@@ -46,9 +46,16 @@ class Authenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+         // nous devons charger une vue ou faire quoi qui ce soit
+        // ex:
+        // on peut penser à  : return $this->redirectToRoute ('accueil')
+        // mais cette classe n'a pas la méthode RedirectToRoute car 
+        // elle n'est pas un controller! On utilisera alors :
+        return new RedirectResponse($this->urlGenerator->generate('accueil'));
+        // on commente/efface la ligne que lance l'exception.
         // For example:
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string
