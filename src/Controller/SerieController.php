@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Serie;
-
 use App\Form\SerieType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +36,8 @@ class SerieController extends AbstractController
             $em->persist($serie);
             $em->flush();
             //et rediriger vers la page de la fiche de la série
-            return new Response("Série enregistrer dna sla db");
+            return new Response("Série enregistrer");
+            // return $this->render('serie/{id}/serieFiche_.html.twig');
            
         }
         else {

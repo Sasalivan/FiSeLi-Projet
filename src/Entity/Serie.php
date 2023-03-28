@@ -31,6 +31,14 @@ class Serie
     #[ORM\Column(length: 255)]
     private ?string $dateSortie = null;
 
+    #[ORM\ManyToOne(inversedBy: 'series')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TypeSerie $type_serie = null;
+
+    #[ORM\ManyToOne(inversedBy: 'statusSerie')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?StatusSerieBase $status_serie_base = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +112,30 @@ class Serie
     public function setDateSortie(string $dateSortie): self
     {
         $this->dateSortie = $dateSortie;
+
+        return $this;
+    }
+
+    public function getTypeSerie(): ?TypeSerie
+    {
+        return $this->type_serie;
+    }
+
+    public function setTypeSerie(?TypeSerie $type_serie): self
+    {
+        $this->type_serie = $type_serie;
+
+        return $this;
+    }
+
+    public function getStatusSerieBase(): ?StatusSerieBase
+    {
+        return $this->status_serie_base;
+    }
+
+    public function setStatusSerieBase(?StatusSerieBase $status_serie_base): self
+    {
+        $this->status_serie_base = $status_serie_base;
 
         return $this;
     }

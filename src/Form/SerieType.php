@@ -22,6 +22,7 @@ class SerieType extends AbstractType
             ->add('dureeEp', TextType::class)
             ->add('paysOrigine', CountryType::class)
             ->add('dateSortie', TextType::class)
+            ->add('type_serie',)
         ;
     }
 
