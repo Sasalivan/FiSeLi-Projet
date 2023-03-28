@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\StatusSerieBase;
+use App\Entity\StatusUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<StatusSerieBase>
+ * @extends ServiceEntityRepository<StatusUser>
  *
- * @method StatusSerieBase|null find($id, $lockMode = null, $lockVersion = null)
- * @method StatusSerieBase|null findOneBy(array $criteria, array $orderBy = null)
- * @method StatusSerieBase[]    findAll()
- * @method StatusSerieBase[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method StatusUser|null find($id, $lockMode = null, $lockVersion = null)
+ * @method StatusUser|null findOneBy(array $criteria, array $orderBy = null)
+ * @method StatusUser[]    findAll()
+ * @method StatusUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StatusSerieBaseRepository extends ServiceEntityRepository
+class StatusUserRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, StatusSerieBase::class);
+        parent::__construct($registry, StatusUser::class);
     }
 
-    public function save(StatusSerieBase $entity, bool $flush = false): void
+    public function save(StatusUser $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class StatusSerieBaseRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(StatusSerieBase $entity, bool $flush = false): void
+    public function remove(StatusUser $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class StatusSerieBaseRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return StatusSerieBase[] Returns an array of StatusSerieBase objects
+//     * @return StatusUser[] Returns an array of StatusUser objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class StatusSerieBaseRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?StatusSerieBase
+//    public function findOneBySomeField($value): ?StatusUser
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')

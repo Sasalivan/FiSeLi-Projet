@@ -37,12 +37,14 @@ class Serie
     #[ORM\JoinColumn(nullable: false)]
     private ?TypeSerie $type_serie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'statusSerie')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?StatusSerieBase $status_serie_base = null;
-
     #[ORM\ManyToMany(targetEntity: GenreSerie::class, inversedBy: 'serie_genre')]
     private Collection $genres;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $status = null;
 
     public function __construct()
     {
@@ -138,17 +140,6 @@ class Serie
         return $this;
     }
 
-    public function getStatusSerieBase(): ?StatusSerieBase
-    {
-        return $this->status_serie_base;
-    }
-
-    public function setStatusSerieBase(?StatusSerieBase $status_serie_base): self
-    {
-        $this->status_serie_base = $status_serie_base;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, GenreSerie>
@@ -170,6 +161,30 @@ class Serie
     public function removeGenre(GenreSerie $genre): self
     {
         $this->genres->removeElement($genre);
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

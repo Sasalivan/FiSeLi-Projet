@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Serie;
+use App\Entity\TypeSerie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +24,12 @@ class SerieType extends AbstractType
             ->add('dureeEp', TextType::class)
             ->add('paysOrigine', CountryType::class)
             ->add('dateSortie', TextType::class)
-            ->add('type_serie',)
+            ->add('type_serie', EntityType::class, [
+                'class'=> TypeSerie::class,
+                'choice_label' => 'name'
+            ])
+            // ->add('status_serie_base', ChoiceType::class,)
+            // ->add('genres', ChoiceType::class,)
         ;
     }
 
