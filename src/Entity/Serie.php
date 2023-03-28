@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SerieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SerieRepository::class)]
@@ -38,6 +40,14 @@ class Serie
     #[ORM\ManyToOne(inversedBy: 'statusSerie')]
     #[ORM\JoinColumn(nullable: false)]
     private ?StatusSerieBase $status_serie_base = null;
+
+    #[ORM\ManyToMany(targetEntity: GenreSerie::class, inversedBy: 'serie_genre')]
+    private Collection $genres;
+
+    public function __construct()
+    {
+        $this->genres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -136,6 +146,30 @@ class Serie
     public function setStatusSerieBase(?StatusSerieBase $status_serie_base): self
     {
         $this->status_serie_base = $status_serie_base;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GenreSerie>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(GenreSerie $genre): self
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(GenreSerie $genre): self
+    {
+        $this->genres->removeElement($genre);
 
         return $this;
     }
