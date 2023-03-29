@@ -46,9 +46,17 @@ class Serie
     #[ORM\Column(length: 20)]
     private ?string $status = null;
 
+    #[ORM\OneToMany(mappedBy: 'stat_ep_serie', targetEntity: StatusEpisode::class)]
+    private Collection $stat_ep_series;
+
+    #[ORM\ManyToMany(targetEntity: StatusUser::class, inversedBy: 'stat_serie')]
+    private Collection $stat_serie_user;
+
     public function __construct()
     {
         $this->genres = new ArrayCollection();
+        $this->stat_ep_series = new ArrayCollection();
+        $this->stat_serie_user = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +193,60 @@ class Serie
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StatusEpisode>
+     */
+    public function getStatEpSeries(): Collection
+    {
+        return $this->stat_ep_series;
+    }
+
+    public function addStatEpSeries(StatusEpisode $statEpSeries): self
+    {
+        if (!$this->stat_ep_series->contains($statEpSeries)) {
+            $this->stat_ep_series->add($statEpSeries);
+            $statEpSeries->setStatEpSerie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatEpSeries(StatusEpisode $statEpSeries): self
+    {
+        if ($this->stat_ep_series->removeElement($statEpSeries)) {
+            // set the owning side to null (unless already changed)
+            if ($statEpSeries->getStatEpSerie() === $this) {
+                $statEpSeries->setStatEpSerie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StatusUser>
+     */
+    public function getStatSerieUser(): Collection
+    {
+        return $this->stat_serie_user;
+    }
+
+    public function addStatSerieUser(StatusUser $statSerieUser): self
+    {
+        if (!$this->stat_serie_user->contains($statSerieUser)) {
+            $this->stat_serie_user->add($statSerieUser);
+        }
+
+        return $this;
+    }
+
+    public function removeStatSerieUser(StatusUser $statSerieUser): self
+    {
+        $this->stat_serie_user->removeElement($statSerieUser);
 
         return $this;
     }

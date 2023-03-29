@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -33,6 +35,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
+
+    #[ORM\OneToMany(mappedBy: 'user_episode', targetEntity: StatusEpisode::class)]
+    private Collection $statusEpisodes;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?StatusUser $stat_user = null;
+
+    public function __construct()
+    {
+        $this->statusEpisodes = new ArrayCollection();
+    }
 
     // #[ORM\Column(type: Types::DATE_MUTABLE)]
     // private ?\DateTimeInterface $Birthday = null;
@@ -130,4 +143,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     //     return $this;
     // }
+
+    /**
+     * @return Collection<int, StatusEpisode>
+     */
+    public function getStatusEpisodes(): Collection
+    {
+        return $this->statusEpisodes;
+    }
+
+    public function addStatusEpisode(StatusEpisode $statusEpisode): self
+    {
+        if (!$this->statusEpisodes->contains($statusEpisode)) {
+            $this->statusEpisodes->add($statusEpisode);
+            $statusEpisode->setUserEpisode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatusEpisode(StatusEpisode $statusEpisode): self
+    {
+        if ($this->statusEpisodes->removeElement($statusEpisode)) {
+            // set the owning side to null (unless already changed)
+            if ($statusEpisode->getUserEpisode() === $this) {
+                $statusEpisode->setUserEpisode(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getStatUser(): ?StatusUser
+    {
+        return $this->stat_user;
+    }
+
+    public function setStatUser(?StatusUser $stat_user): self
+    {
+        $this->stat_user = $stat_user;
+
+        return $this;
+    }
 }
