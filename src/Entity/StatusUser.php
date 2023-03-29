@@ -21,6 +21,9 @@ class StatusUser
     #[ORM\ManyToMany(targetEntity: Serie::class, mappedBy: 'stat_serie_user')]
     private Collection $stat_serie;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?User $stat_utilisateur_serie = null;
+
     public function __construct()
     {
         $this->stat_serie = new ArrayCollection();
@@ -66,6 +69,18 @@ class StatusUser
         if ($this->stat_serie->removeElement($statSerie)) {
             $statSerie->removeStatSerieUser($this);
         }
+
+        return $this;
+    }
+
+    public function getStatUtilisateurSerie(): ?User
+    {
+        return $this->stat_utilisateur_serie;
+    }
+
+    public function setStatUtilisateurSerie(?User $stat_utilisateur_serie): self
+    {
+        $this->stat_utilisateur_serie = $stat_utilisateur_serie;
 
         return $this;
     }

@@ -39,8 +39,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user_episode', targetEntity: StatusEpisode::class)]
     private Collection $statusEpisodes;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?StatusUser $stat_user = null;
 
     public function __construct()
     {
@@ -174,15 +172,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getStatUser(): ?StatusUser
-    {
-        return $this->stat_user;
-    }
-
-    public function setStatUser(?StatusUser $stat_user): self
-    {
-        $this->stat_user = $stat_user;
-
-        return $this;
-    }
 }

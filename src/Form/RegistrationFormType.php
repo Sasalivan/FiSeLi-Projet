@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
                 'attr' =>[
                     'class' => 'form-control'
                 ],
-                'label' => 'Pseudonyme'
+                'label' => 'Pseudo'
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

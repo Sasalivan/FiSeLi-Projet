@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil !!{% endblock %}
 
 {% block body %}
 <div>
-    <a href="{{path('app_login')}}">Se connecter</a>
-    <a href="{{path('app_register')}}">S'inscrire</a>
     <h1>Bienvenue dans la page d'accueil</h1>
     {# <h1> Bienvenue dans la page d'accueil {{app.User.pseudo}}</h1> #}
     <a href="{{path('app_serie')}}">Toutes les séries</a>
