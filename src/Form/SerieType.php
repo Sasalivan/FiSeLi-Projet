@@ -6,6 +6,7 @@ use App\Entity\Serie;
 use App\Entity\TypeSerie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -24,11 +25,11 @@ class SerieType extends AbstractType
             ->add('dureeEp', TextType::class)
             ->add('paysOrigine', CountryType::class)
             ->add('dateSortie', TextType::class)
+            ->add('status', TextType::class)
             ->add('type_serie', EntityType::class, [
-                'class'=> TypeSerie::class,
-                'choice_label' => 'name'
+                'class' => TypeSerie::class,
+                'choice_label'=> 'nom'
             ])
-            // ->add('status_serie_base', ChoiceType::class,)
             // ->add('genres', ChoiceType::class,)
         ;
     }

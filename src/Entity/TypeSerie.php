@@ -18,7 +18,7 @@ class TypeSerie
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'type_serie', targetEntity: Serie::class)]
+    #[ORM\OneToMany(mappedBy: 'type_serie', targetEntity: Serie::class, cascade: ['persist', 'remove'])]
     private Collection $series;
 
     public function __construct()
@@ -31,12 +31,12 @@ class TypeSerie
         return $this->id;
     }
 
-    public function getSerieTV(): ?string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setSerieTV(string $nom): self
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 
