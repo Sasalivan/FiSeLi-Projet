@@ -3,6 +3,10 @@
 {% block title %}Accueil !!{% endblock %}
 
 {% block body %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
 <div>
     <h1>Bienvenue dans la page d'accueil</h1>
     {# <h1> Bienvenue dans la page d'accueil {{app.User.pseudo}}</h1> #}

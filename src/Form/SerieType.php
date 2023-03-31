@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\GenreSerie;
 use App\Entity\Serie;
 use App\Entity\TypeSerie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -30,7 +31,12 @@ class SerieType extends AbstractType
                 'class' => TypeSerie::class,
                 'choice_label'=> 'nom'
             ])
-            // ->add('genres', ChoiceType::class,)
+            ->add('genres', EntityType::class, [
+                'class' => GenreSerie::class,
+                'choice_label'=>'nom_genre',
+                'multiple' => true,
+                'expanded' => true,
+            ])
         ;
     }
 

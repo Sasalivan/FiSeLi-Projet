@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche de la serie :  {% endblock %}
+
+{% block body %}
+
+    <h1> Titre : {{ series.titre }} </h1>
+    <h2> Titre original : {{ series.titreOriginal }} </h2>
+    <p> Episode : {{ series.episode }}</p>
+    <p> Durée épisode : {{ series.dureeEp }}</p>
+    <p> Status : {{ series.status }}</p>
+    {# <p> Type: {{ series.type_serie.nom }} </p> #}
+    <p> Année de sortie : {{ series.dateSortie }}</p>
+    <p> Pays d'origine : {{ series.paysOrigine }}</p>
+
+{% endblock %}

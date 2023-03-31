@@ -3,6 +3,11 @@
 {% block title %}Toutes les séries!{% endblock %}
 
 {% block body %}
-listes de toutes les séries sur le site.
+listes de toutes les séries sur le site. <br>
 
+{% for serie in all_serie %}
+
+        serie 1:  {{ serie.titre }} <br>
+
+{% endfor %}
 {% endblock %}

@@ -33,7 +33,7 @@ class Serie
     #[ORM\Column(length: 255)]
     private ?string $dateSortie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'series')]
+    #[ORM\ManyToOne(targetEntity: TypeSerie::class, inversedBy: 'series')]
     #[ORM\JoinColumn(nullable: false)]
     private ?TypeSerie $type_serie = null;
 
