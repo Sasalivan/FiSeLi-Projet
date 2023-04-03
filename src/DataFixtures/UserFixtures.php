@@ -24,7 +24,7 @@ class UserFixtures extends Fixture
             $user->setEmail ("admin".$i."@administrateur.com");
             $user->setPassword($this->passwordHasher->hashPassword(
                  $user,
-                 'lePassword'.$i
+                 'lePassword'
              ));
             $user->setPseudo("Admin");
             $manager->persist ($user);

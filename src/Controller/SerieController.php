@@ -27,8 +27,8 @@ class SerieController extends AbstractController
     #[Route('/serie/{id}', name: 'detail')]
     public function detailSerie(Serie $series, SerieRepository $repo): Response
     {
-        dd($series);
-        return $this->render('serie/detail.html.twig', compact ('series'));
+        // dd($series);
+        return $this->render('serie/detail.html.twig', compact('series'));
     }
 
 

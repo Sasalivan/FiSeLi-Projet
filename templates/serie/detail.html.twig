@@ -9,8 +9,13 @@
     <p> Episode : {{ series.episode }}</p>
     <p> Durée épisode : {{ series.dureeEp }}</p>
     <p> Status : {{ series.status }}</p>
-    {# <p> Type: {{ series.type_serie.nom }} </p> #}
+    <p> Type: {{ series.typeSerie.nom }} </p>
+    {# <p> Genre: {{ series.genres }} </p> #}
+    <p> Genre: {% for genre in series.genres %}
+               {{ genre }}
+           {% endfor %} </p>
     <p> Année de sortie : {{ series.dateSortie }}</p>
     <p> Pays d'origine : {{ series.paysOrigine }}</p>
+    <a href="{{ path('list_add', {'id': series.id})}}" type="submit" class="btn btn-primary btn-lg my-3">ajouter à la liste</a>
 
 {% endblock %}

@@ -172,6 +172,7 @@ class Serie
 
         return $this;
     }
+    
 
     public function getImage(): ?string
     {

@@ -26,6 +26,7 @@ class GenreSerie
         $this->serie_genre = new ArrayCollection();
     }
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,4 +70,9 @@ class GenreSerie
 
         return $this;
     }
+
+    public function __toString(){
+         return $this->nom_genre;
+    }
+
 }

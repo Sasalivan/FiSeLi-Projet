@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListController!{% endblock %}
+
+{% block body %}
+<h1>Ma liste</h1>
+    {% if items | length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Serie</th>
+                    <th>Episode </th>
+                    <th>Epsiode en cours</th>
+                    <th>type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.serie.titre }}</td>
+                        <td>{{ item.serie.episode }}</td>
+                        <td>{{ item.episodeUser }}</td>
+                        <td>{{ item.serie.typeSerie.nom }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p>Votre liste est vide</p> 
+    {% endif %}
+
+{% endblock %}
