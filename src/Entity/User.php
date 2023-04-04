@@ -36,13 +36,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_episode', targetEntity: StatusEpisode::class)]
-    private Collection $statusEpisodes;
+    #[ORM\OneToMany(mappedBy: 'user_episode', targetEntity: StatusSerie::class)]
+    private Collection $statusSeries;
 
 
     public function __construct()
     {
-        $this->statusEpisodes = new ArrayCollection();
+        $this->statusSeries = new ArrayCollection();
     }
 
     // #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -143,29 +143,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // }
 
     /**
-     * @return Collection<int, StatusEpisode>
+     * @return Collection<int, StatusSerie>
      */
-    public function getStatusEpisodes(): Collection
+    public function getStatusSeries(): Collection
     {
-        return $this->statusEpisodes;
+        return $this->statusSeries;
     }
 
-    public function addStatusEpisode(StatusEpisode $statusEpisode): self
+    public function addStatusSerie(StatusSerie $statusSerie): self
     {
-        if (!$this->statusEpisodes->contains($statusEpisode)) {
-            $this->statusEpisodes->add($statusEpisode);
-            $statusEpisode->setUserEpisode($this);
+        if (!$this->statusSeries->contains($statusSerie)) {
+            $this->statusSeries->add($statusSerie);
+            $statusSerie->setUserEpisode($this);
         }
 
         return $this;
     }
 
-    public function removeStatusEpisode(StatusEpisode $statusEpisode): self
+    public function removeStatusSerie(StatusSerie $statusSerie): self
     {
-        if ($this->statusEpisodes->removeElement($statusEpisode)) {
+        if ($this->statusSeries->removeElement($statusSerie)) {
             // set the owning side to null (unless already changed)
-            if ($statusEpisode->getUserEpisode() === $this) {
-                $statusEpisode->setUserEpisode(null);
+            if ($statusSerie->getUserEpisode() === $this) {
+                $statusSerie->setUserEpisode(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function addStatusSeries(StatusSerie $statusSeries): self
+    {
+        if (!$this->statusSeries->contains($statusSeries)) {
+            $this->statusSeries->add($statusSeries);
+            $statusSeries->setUserEpisode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatusSeries(StatusSerie $statusSeries): self
+    {
+        if ($this->statusSeries->removeElement($statusSeries)) {
+            // set the owning side to null (unless already changed)
+            if ($statusSeries->getUserEpisode() === $this) {
+                $statusSeries->setUserEpisode(null);
             }
         }
 

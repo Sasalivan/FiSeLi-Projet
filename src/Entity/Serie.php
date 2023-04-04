@@ -24,8 +24,8 @@ class Serie
     #[ORM\Column]
     private ?int $episode = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $dureeEp = null;
+    #[ORM\Column]
+    private ?int $dureeEp = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $paysOrigine = null;
@@ -34,7 +34,7 @@ class Serie
     private ?string $dateSortie = null;
 
     #[ORM\ManyToOne(targetEntity: TypeSerie::class, inversedBy: 'series')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?TypeSerie $type_serie = null;
 
     #[ORM\ManyToMany(targetEntity: GenreSerie::class, inversedBy: 'serie_genre')]
@@ -46,11 +46,9 @@ class Serie
     #[ORM\Column(length: 20)]
     private ?string $status = null;
 
-    #[ORM\OneToMany(mappedBy: 'stat_ep_serie', targetEntity: StatusEpisode::class)]
+    #[ORM\OneToMany(mappedBy: 'stat_ep_serie', targetEntity: StatusSerie::class)]
     private Collection $stat_ep_series;
 
-    #[ORM\ManyToMany(targetEntity: StatusUser::class, inversedBy: 'stat_serie')]
-    private Collection $stat_serie_user;
 
     public function __construct()
     {
@@ -100,12 +98,12 @@ class Serie
         return $this;
     }
 
-    public function getDureeEp(): ?string
+    public function getDureeEp(): ?int
     {
         return $this->dureeEp;
     }
 
-    public function setDureeEp(?string $dureeEp): self
+    public function setDureeEp(?int $dureeEp): self
     {
         $this->dureeEp = $dureeEp;
 
@@ -199,14 +197,14 @@ class Serie
     }
 
     /**
-     * @return Collection<int, StatusEpisode>
+     * @return Collection<int, StatusSerie>
      */
     public function getStatEpSeries(): Collection
     {
         return $this->stat_ep_series;
     }
 
-    public function addStatEpSeries(StatusEpisode $statEpSeries): self
+    public function addStatEpSeries(StatusSerie $statEpSeries): self
     {
         if (!$this->stat_ep_series->contains($statEpSeries)) {
             $this->stat_ep_series->add($statEpSeries);
@@ -216,7 +214,7 @@ class Serie
         return $this;
     }
 
-    public function removeStatEpSeries(StatusEpisode $statEpSeries): self
+    public function removeStatEpSeries(StatusSerie $statEpSeries): self
     {
         if ($this->stat_ep_series->removeElement($statEpSeries)) {
             // set the owning side to null (unless already changed)
@@ -228,27 +226,4 @@ class Serie
         return $this;
     }
 
-    /**
-     * @return Collection<int, StatusUser>
-     */
-    public function getStatSerieUser(): Collection
-    {
-        return $this->stat_serie_user;
-    }
-
-    public function addStatSerieUser(StatusUser $statSerieUser): self
-    {
-        if (!$this->stat_serie_user->contains($statSerieUser)) {
-            $this->stat_serie_user->add($statSerieUser);
-        }
-
-        return $this;
-    }
-
-    public function removeStatSerieUser(StatusUser $statSerieUser): self
-    {
-        $this->stat_serie_user->removeElement($statSerieUser);
-
-        return $this;
-    }
 }

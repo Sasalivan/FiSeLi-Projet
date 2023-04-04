@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\StatusEpisode;
+use App\Entity\StatusSerie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<StatusEpisode>
+ * @extends ServiceEntityRepository<StatusSerie>
  *
- * @method StatusEpisode|null find($id, $lockMode = null, $lockVersion = null)
- * @method StatusEpisode|null findOneBy(array $criteria, array $orderBy = null)
- * @method StatusEpisode[]    findAll()
- * @method StatusEpisode[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method StatusSerie|null find($id, $lockMode = null, $lockVersion = null)
+ * @method StatusSerie|null findOneBy(array $criteria, array $orderBy = null)
+ * @method StatusSerie[]    findAll()
+ * @method StatusSerie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StatusEpisodeRepository extends ServiceEntityRepository
+class StatusSerieRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, StatusEpisode::class);
+        parent::__construct($registry, StatusSerie::class);
     }
 
-    public function save(StatusEpisode $entity, bool $flush = false): void
+    public function save(StatusSerie $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class StatusEpisodeRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(StatusEpisode $entity, bool $flush = false): void
+    public function remove(StatusSerie $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class StatusEpisodeRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return StatusEpisode[] Returns an array of StatusEpisode objects
+//     * @return StatusSerie[] Returns an array of StatusSerie objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class StatusEpisodeRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?StatusEpisode
+//    public function findOneBySomeField($value): ?StatusSerie
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')

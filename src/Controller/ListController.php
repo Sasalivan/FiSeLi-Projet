@@ -36,9 +36,7 @@ class ListController extends AbstractController
     #[Route('/list/add/{id}', name: 'list_add')]
     public function add($id, SessionInterface $session){
 
-        $liste = $session->get('liste', []);
 
-        $liste[$id] = 1;
 
         //pour ajouter plusieur fois la meme serie dans la liste
 

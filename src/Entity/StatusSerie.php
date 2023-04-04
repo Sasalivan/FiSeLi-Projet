@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\StatusEpisodeRepository;
+use App\Repository\StatusSerieRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: StatusEpisodeRepository::class)]
-class StatusEpisode
+#[ORM\Entity(repositoryClass: StatusSerieRepository::class)]
+class StatusSerie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,7 +16,7 @@ class StatusEpisode
     #[ORM\Column(nullable: true)]
     private ?int $nbEpisodeUser = null;
 
-    #[ORM\ManyToOne(inversedBy: 'statusEpisodes')]
+    #[ORM\ManyToOne(inversedBy: 'statusSeries')]
     private ?User $user_episode = null;
 
     #[ORM\ManyToOne(inversedBy: 'stat_ep_series')]
