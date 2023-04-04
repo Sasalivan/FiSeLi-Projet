@@ -23,27 +23,32 @@ class LienUserSeriesFixtures extends Fixture implements DependentFixtureInterfac
         $series = $rep->findAll();
 
         // créer des DetailsUser
-        for ($i = 0; $i < 50; $i++) {
-            // affecter un user random et un serie random
-            $userChoisie = $users[rand(0, count($users) - 1)];
-            $serieChoisi = $series[rand(0, count($series) - 1)];
+        for ($i = 0; $i < count($users); $i++) {
 
-            $statusSerie = new StatusSerie();
-            $statusSerie->setSerie($serieChoisi);
-            $statusSerie->setUser($userChoisie);
-            
+            $userChoisie = $users[$i];
 
-            $statusSerie->setNomStatus("watching");
-
-
-            $statusSerie->setNbEpisodeUser(rand(1,10));
-            
-            
-            $userChoisie->addStatus($statusSerie);
-            $serieChoisi->addStatus($statusSerie);
-
-            $manager->persist($statusSerie);
+            for ($j = 0; $j < 5; $j++) {
+                // affecter un user random et un serie random
+                $serieChoisi = $series[$j];
+    
+                $statusSerie = new StatusSerie();
+                $statusSerie->setSerie($serieChoisi);
+                $statusSerie->setUser($userChoisie);
+                
+    
+                $statusSerie->setNomStatus("watching");
+    
+    
+                $statusSerie->setNbEpisodeUser(rand(1,10));
+                
+                
+                $userChoisie->addStatus($statusSerie);
+                $serieChoisi->addStatus($statusSerie);
+    
+                $manager->persist($statusSerie);
+            }
         }
+        
         $manager->flush();
     }
 

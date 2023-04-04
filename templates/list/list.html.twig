@@ -4,7 +4,7 @@
 
 {% block body %}
 <h1>Ma liste</h1>
-    {% if items | length > 0 %}
+    {% if statuses | length > 0 %}
         <table class="table">
             <thead>
                 <tr>
@@ -15,12 +15,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for item in items %}
+                {% for status in statuses %}
                     <tr>
-                        <td>{{ item.serie.titre }}</td>
-                        <td>{{ item.serie.episode }}</td>
-                        {# <td>{{ item.episodeUser }}</td> #}
-                        <td>{{ item.serie.typeSerie.nom }}</td>
+                        <td>{{ status.serie.titre }}</td>
+                        <td>{{ status.serie.episode }}</td>
+                        {# <td>{{ status.episodeUser }}</td> #}
+                        <td>{{ status.serie.typeSerie.nom }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

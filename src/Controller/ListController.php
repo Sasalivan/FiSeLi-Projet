@@ -2,51 +2,49 @@
 
 namespace App\Controller;
 
+use App\Entity\Serie;
+use App\Entity\StatusSerie;
 use App\Repository\SerieRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ListController extends AbstractController
 {
     #[Route('/list', name: 'app_list')]
     public function index( SessionInterface $session, SerieRepository $serieRepository): Response
     {
-        $liste = $session->get('liste', []);
+        
+        $user = $this->getUser();
 
-        $listeData = [];
-
-
-        foreach($liste as $id => $cmbSerieInList){
-            $listeData[] = [
-                'serie' => $serieRepository->find($id),
-                'cmbSerieInListe' => $cmbSerieInList
-            ];
-
-        }
-
+        $statuses = $user->getStatuses();
+        
 
         return $this->render('list/list.html.twig', [
-            'items' => $listeData
+            'statuses' => $statuses
         ]);
     }
 
     #[Route('/list/add/{id}', name: 'list_add')]
-    public function add($id, SessionInterface $session){
+    public function add($id, SessionInterface $session, ManagerRegistry $doctrine){
 
+        $em = $doctrine->getManager();
 
+        
+        $serie = $em->getRepository(Serie::class)->find($id); 
+        $user = $this->getUser();
 
-        //pour ajouter plusieur fois la meme serie dans la liste
+        $status = new StatusSerie();
+        $status->setNomStatus('planWatch');
+        $status->setUser($user);
+        $status->setSerie($serie);
 
-        // if(!empty($liste[$id])) {
-        //     $liste[$id]++;
-        // } else {
-        //     $liste[$id] = 1;
-        // }
+        $em->persist($status);
+        $em->flush();
 
-
-        dd($session->get('liste'));
+        return $this->redirectToRoute('app_list');
     }
 }

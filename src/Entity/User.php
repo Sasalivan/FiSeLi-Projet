@@ -145,7 +145,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, StatusSerie>
      */
-    public function getStatusesSeries(): Collection
+    public function getStatuses(): Collection
     {
         return $this->statuses;
     }
