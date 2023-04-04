@@ -19,10 +19,10 @@ class ListController extends AbstractController
         $listeData = [];
 
 
-        foreach($liste as $id => $episodeUser){
+        foreach($liste as $id => $cmbSerieInList){
             $listeData[] = [
                 'serie' => $serieRepository->find($id),
-                'episodeUser' => $episodeUser
+                'cmbSerieInListe' => $cmbSerieInList
             ];
 
         }
@@ -40,7 +40,7 @@ class ListController extends AbstractController
 
         $liste[$id] = 1;
 
-        //pour ajouter plusieur fois la meme serie dans la liste ( a transformer pour les episodes)
+        //pour ajouter plusieur fois la meme serie dans la liste
 
         // if(!empty($liste[$id])) {
         //     $liste[$id]++;

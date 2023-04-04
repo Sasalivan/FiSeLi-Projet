@@ -7,7 +7,7 @@ listes de toutes les séries sur le site. <br>
 
 {% for serie in all_serie %}
 
-        serie 1:  {{ serie.titre }} <br>
+        <a href="{{ path ('detail' ,{id: serie.id } ) }}">{{ serie.titre }}</a><br>
 
 {% endfor %}
 {% endblock %}

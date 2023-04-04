@@ -10,7 +10,7 @@
                 <tr>
                     <th>Serie</th>
                     <th>Episode </th>
-                    <th>Epsiode en cours</th>
+                    {# <th>Episode en cours</th> #}
                     <th>type</th>
                 </tr>
             </thead>
@@ -19,7 +19,7 @@
                     <tr>
                         <td>{{ item.serie.titre }}</td>
                         <td>{{ item.serie.episode }}</td>
-                        <td>{{ item.episodeUser }}</td>
+                        {# <td>{{ item.episodeUser }}</td> #}
                         <td>{{ item.serie.typeSerie.nom }}</td>
                     </tr>
                 {% endfor %}
