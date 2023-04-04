@@ -46,15 +46,14 @@ class Serie
     #[ORM\Column(length: 20)]
     private ?string $status = null;
 
-    #[ORM\OneToMany(mappedBy: 'stat_ep_serie', targetEntity: StatusSerie::class)]
-    private Collection $stat_ep_series;
+    #[ORM\OneToMany(mappedBy: 'serie', targetEntity: StatusSerie::class)]
+    private Collection $statuses;
 
 
     public function __construct()
     {
         $this->genres = new ArrayCollection();
-        $this->stat_ep_series = new ArrayCollection();
-        $this->stat_serie_user = new ArrayCollection();
+        $this->statuses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,27 +198,27 @@ class Serie
     /**
      * @return Collection<int, StatusSerie>
      */
-    public function getStatEpSeries(): Collection
+    public function getStatuses(): Collection
     {
-        return $this->stat_ep_series;
+        return $this->statuses;
     }
 
-    public function addStatEpSeries(StatusSerie $statEpSeries): self
+    public function addStatus(StatusSerie $status): self
     {
-        if (!$this->stat_ep_series->contains($statEpSeries)) {
-            $this->stat_ep_series->add($statEpSeries);
-            $statEpSeries->setStatEpSerie($this);
+        if (!$this->statuses->contains($status)) {
+            $this->statuses->add($status);
+            $status->setSerie($this);
         }
 
         return $this;
     }
 
-    public function removeStatEpSeries(StatusSerie $statEpSeries): self
+    public function removeStatus(StatusSerie $status): self
     {
-        if ($this->stat_ep_series->removeElement($statEpSeries)) {
+        if ($this->statuses->removeElement($status)) {
             // set the owning side to null (unless already changed)
-            if ($statEpSeries->getStatEpSerie() === $this) {
-                $statEpSeries->setStatEpSerie(null);
+            if ($status->getSerie() === $this) {
+                $status->setSerie(null);
             }
         }
 

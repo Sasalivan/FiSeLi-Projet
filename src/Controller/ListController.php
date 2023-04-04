@@ -46,7 +46,6 @@ class ListController extends AbstractController
         //     $liste[$id] = 1;
         // }
 
-        $session->set('liste', $liste);
 
         dd($session->get('liste'));
     }

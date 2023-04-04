@@ -16,11 +16,14 @@ class StatusSerie
     #[ORM\Column(nullable: true)]
     private ?int $nbEpisodeUser = null;
 
-    #[ORM\ManyToOne(inversedBy: 'statusSeries')]
-    private ?User $user_episode = null;
+    #[ORM\ManyToOne(inversedBy: 'statuses')]
+    private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'stat_ep_series')]
-    private ?Serie $stat_ep_serie = null;
+    #[ORM\ManyToOne(inversedBy: 'statuses')]
+    private ?Serie $serie = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nomStatus = null;
 
     public function getId(): ?int
     {
@@ -39,26 +42,38 @@ class StatusSerie
         return $this;
     }
 
-    public function getUserEpisode(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_episode;
+        return $this->user;
     }
 
-    public function setUserEpisode(?User $user_episode): self
+    public function setUser(?User $user): self
     {
-        $this->user_episode = $user_episode;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getStatEpSerie(): ?Serie
+    public function getSerie(): ?Serie
     {
-        return $this->stat_ep_serie;
+        return $this->serie;
     }
 
-    public function setStatEpSerie(?Serie $stat_ep_serie): self
+    public function setSerie(?Serie $serie): self
     {
-        $this->stat_ep_serie = $stat_ep_serie;
+        $this->serie = $serie;
+
+        return $this;
+    }
+
+    public function getNomStatus(): ?string
+    {
+        return $this->nomStatus;
+    }
+
+    public function setNomStatus(?string $nomStatus): self
+    {
+        $this->nomStatus = $nomStatus;
 
         return $this;
     }

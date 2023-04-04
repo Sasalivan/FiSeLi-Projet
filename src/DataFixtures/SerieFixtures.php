@@ -20,7 +20,7 @@ class SerieFixtures extends Fixture implements DependentFixtureInterface
 
             $serie = new Serie();
             $serie->setTitre($faker->lastName);
-            $serie->setEpisode(rand(1,20));
+            $serie->setEpisode(rand(10,20));
             $serie->setDureeEp(rand(40,90));
             $serie->setDateSortie(rand(1990,2030));
             $serie->setStatus("terminée");
