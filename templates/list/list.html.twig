@@ -12,6 +12,8 @@
                     <th>Episode </th>
                     {# <th>Episode en cours</th> #}
                     <th>type</th>
+                    <th>Status</th>
+                    <th>Episode en cours</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +23,10 @@
                         <td>{{ status.serie.episode }}</td>
                         {# <td>{{ status.episodeUser }}</td> #}
                         <td>{{ status.serie.typeSerie.nom }}</td>
+                        <td>{{ status.nomStatus }}</td>
+                        <td>{{ status.nbEpisodeUser }}</td>
+
+
                     </tr>
                 {% endfor %}
             </tbody>

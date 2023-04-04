@@ -46,7 +46,7 @@ class Serie
     #[ORM\Column(length: 20)]
     private ?string $status = null;
 
-    #[ORM\OneToMany(mappedBy: 'serie', targetEntity: StatusSerie::class)]
+    #[ORM\OneToMany(mappedBy: 'serie', targetEntity: StatusSerie::class, cascade: ['persist'])]
     private Collection $statuses;
 
 

@@ -45,8 +45,8 @@ class LienUserSeriesFixtures extends Fixture implements DependentFixtureInterfac
                 $userChoisie->addStatus($statusSerie);
                 $serieChoisi->addStatus($statusSerie);
     
-                $manager->persist($statusSerie);
             }
+            $manager->persist($statusSerie);
         }
         
         $manager->flush();

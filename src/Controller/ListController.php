@@ -29,7 +29,7 @@ class ListController extends AbstractController
     }
 
     #[Route('/list/add/{id}', name: 'list_add')]
-    public function add($id, SessionInterface $session, ManagerRegistry $doctrine){
+    public function add($id, ManagerRegistry $doctrine){
 
         $em = $doctrine->getManager();
 

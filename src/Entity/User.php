@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: StatusSerie::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: StatusSerie::class, cascade: ['persist'])]
     private Collection $statuses;
 
 
