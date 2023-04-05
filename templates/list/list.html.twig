@@ -9,11 +9,12 @@
             <thead>
                 <tr>
                     <th>Serie</th>
-                    <th>Episode </th>
+                    <th>Episode Total</th>
                     {# <th>Episode en cours</th> #}
-                    <th>type</th>
+                    <th>Type</th>
                     <th>Status</th>
                     <th>Episode en cours</th>
+                    <th>Editer votre status</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +26,7 @@
                         <td>{{ status.serie.typeSerie.nom }}</td>
                         <td>{{ status.nomStatus }}</td>
                         <td>{{ status.nbEpisodeUser }}</td>
-
+                        <td><a href="{{ path('list_update', {'id': status.id})}}" type="submit"  class="btn btn-primary btn-lg my-3">up</a></td>
 
                     </tr>
                 {% endfor %}

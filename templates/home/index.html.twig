@@ -8,10 +8,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
 {% endblock %}
 <div>
-    <h1>Bienvenue dans la page d'accueil</h1>
-    {# <h1> Bienvenue dans la page d'accueil {{app.User.pseudo}}</h1> #}
+    {% if app.user %}
+		<div class="nav-item">
+            <h1> Bienvenue dans la page d'accueil {{app.User.pseudo}}</h1>
+			<a href="{{path('ajouter_serie')}}">Ajouter une série</a>
+	    </div>
+    {% else %}
+        <h1>Bienvenue dans la page d'accueil</h1>
+    {% endif %}
     <a href="{{path('app_serie')}}">Toutes les séries</a>
-    <a href="{{path('ajouter_serie')}}">Ajouter une série</a>
-
 </div>
 {% endblock %}

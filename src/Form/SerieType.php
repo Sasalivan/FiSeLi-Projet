@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SerieType extends AbstractType
@@ -36,6 +37,12 @@ class SerieType extends AbstractType
                 'choice_label'=>'nom_genre',
                 'multiple' => true,
                 'expanded' => true,
+            ])
+            ->add('description', TextType::class)
+            ->add('image', FileType::class, [
+                'label' => 'Image',
+                'mapped' => false,
+                'required' => false,
             ])
         ;
     }

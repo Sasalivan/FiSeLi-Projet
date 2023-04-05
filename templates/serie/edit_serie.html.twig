@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la série {{ serie.titre }}{% endblock %}
+
+{% block body %}
+    <h1>Modifier la série {{ serie.titre }}</h1>
+
+    {{ form_start(formulaire, {'action': path('edit_serie', {'id': serie.id}),
+                            'method': 'POST'}) }}
+
+    {{ form_widget (formulaire) }}
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+    {{ form_end(formulaire) }}
+
+    <a href="{{ path('detail', {'id': serie.id}) }}" class="btn btn-secondary">Retour</a>
+{% endblock %}

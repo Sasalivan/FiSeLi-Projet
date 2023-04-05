@@ -6,6 +6,7 @@
 
     <h1> Titre : {{ series.titre }} </h1>
     <h2> Titre original : {{ series.titreOriginal }} </h2>
+    <img src="{{ asset('images/' ~ series.image) }}">
     <p> Episode : {{ series.episode }}</p>
     <p> Durée épisode : {{ series.dureeEp }}</p>
     <p> Status : {{ series.status }}</p>
@@ -16,7 +17,9 @@
            {% endfor %} </p>
     <p> Année de sortie : {{ series.dateSortie }}</p>
     <p> Pays d'origine : {{ series.paysOrigine }}</p>
+    <p> Description: {{ series.description }}</p>
     
     <a href="{{ path('list_add', {'id': series.id})}}" type="submit"  class="btn btn-primary btn-lg my-3">ajouter à la liste</a>
+    <a href="{{ path('edit_serie', {'id': series.id})}}" type="submit"  class="btn btn-primary btn-lg my-3">edit</a>
 
 {% endblock %}

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230404111109 extends AbstractMigration
+final class Version20230405081831 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,7 +21,7 @@ final class Version20230404111109 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE genre_serie (id INT AUTO_INCREMENT NOT NULL, nom_genre VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE serie (id INT AUTO_INCREMENT NOT NULL, type_serie_id INT DEFAULT NULL, titre VARCHAR(255) NOT NULL, titre_original VARCHAR(255) DEFAULT NULL, episode INT NOT NULL, duree_ep INT NOT NULL, pays_origine VARCHAR(255) DEFAULT NULL, date_sortie VARCHAR(255) NOT NULL, image VARCHAR(255) DEFAULT NULL, status VARCHAR(20) NOT NULL, INDEX IDX_AA3A933414BCAF41 (type_serie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE serie (id INT AUTO_INCREMENT NOT NULL, type_serie_id INT DEFAULT NULL, titre VARCHAR(255) NOT NULL, titre_original VARCHAR(255) DEFAULT NULL, episode INT NOT NULL, duree_ep INT NOT NULL, pays_origine VARCHAR(255) DEFAULT NULL, date_sortie VARCHAR(255) NOT NULL, image VARCHAR(255) DEFAULT NULL, status VARCHAR(20) NOT NULL, description LONGTEXT DEFAULT NULL, INDEX IDX_AA3A933414BCAF41 (type_serie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE serie_genre_serie (serie_id INT NOT NULL, genre_serie_id INT NOT NULL, INDEX IDX_1000BEA2D94388BD (serie_id), INDEX IDX_1000BEA26A1E7700 (genre_serie_id), PRIMARY KEY(serie_id, genre_serie_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE status_serie (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, serie_id INT DEFAULT NULL, nb_episode_user INT DEFAULT NULL, nom_status VARCHAR(255) DEFAULT NULL, INDEX IDX_5D60C2C4A76ED395 (user_id), INDEX IDX_5D60C2C4D94388BD (serie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE type_serie (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

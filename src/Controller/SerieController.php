@@ -28,7 +28,9 @@ class SerieController extends AbstractController
     public function detailSerie(Serie $series, SerieRepository $repo): Response
     {
         // dd($series);
-        return $this->render('serie/detail.html.twig', compact('series'));
+        return $this->render('serie/detail.html.twig',[
+            'series' => $series,
+        ]);
     }
 
 
@@ -36,6 +38,7 @@ class SerieController extends AbstractController
     #[Route('/ajouter/serie', name: 'ajouter_serie')]
     public function ajouterSerie(Request $req, ManagerRegistry $doctrine): Response
     {
+        $user = $this->getUser();
         
         $serie = new Serie();
 
@@ -43,15 +46,27 @@ class SerieController extends AbstractController
 
         $formulaire->handleRequest($req);
 
-        if ($formulaire-> isSubmitted()){
+        if ($formulaire-> isSubmitted() && $formulaire->isValid()){
+
+            // $imageFile = $formulaire->get('image')->getData();
+            // if ($imageFile) {
+            //     $newFilename = uniqid().'.'.$imageFile->guessExtension();
+                
+            //     $imageFile->move(
+            //         $this->getParameter('images_directory'),
+            //         $newFilename
+            //     );
+            //     $serie->setImage($newFilename);
+            // }
+
             //prendre donnée et ajouter dans la db 
             $em = $doctrine->getManager();
             $em->persist($serie);
             $em->flush();
             //et rediriger vers la page de la fiche de la série
-            return new Response("Série enregistrer");
-            // return $this->render('serie/{id}/serieFiche_.html.twig');
-           
+            // return new Response("Série enregistrer");
+            return $this->redirectToRoute('detail', ['id' => $serie->getId()]);;
+      
         }
         else {
             $vars = ['formulaire'=> $formulaire->createView()];
@@ -59,6 +74,30 @@ class SerieController extends AbstractController
             return $this->render('serie/ajouter_serie.html.twig', $vars);
         }
 
-
+        
     }
+
+    #[Route ("/serie/{id}/edit", name:'edit_serie')]
+    public function updateSerie(Serie $series, ManagerRegistry $doctrine, Request $req)
+    {
+        $em = $doctrine->getManager();
+
+        $formulaire = $this->createForm(SerieType::class, $series);
+
+        $formulaire->handleRequest($req);
+    
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+    
+            $em->flush();
+
+            return $this->redirectToRoute('detail', ['id' => $series->getId()]);
+        }
+
+    
+        return $this->render('serie/edit_serie.html.twig', [
+            'serie' => $series,
+            'formulaire' => $formulaire->createView(),
+        ]);
+    }
+
 }
