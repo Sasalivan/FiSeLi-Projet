@@ -5,17 +5,28 @@
 {% block body %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> #}
+    <style>
+        body {background-color: #E8E6E6}
+
+        .container { width: 1060px; justify-content: center; margin-top: 5%; margin-left: auto; margin-right: auto; position: relative; display: block; border:1px}
+        .button {display: inline-block;}
+        .btn1 { background-color: #E49BB7; border-radius: 12px;  border: 10px; color: white; padding: 10px 32px;    margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; }
+        .a {text-decoration: none; font-size: 16px;}
+    </style>
+
 {% endblock %}
-<div>
-    {% if app.user %}
-		<div class="nav-item">
-            <h1> Bienvenue dans la page d'accueil {{app.User.pseudo}}</h1>
-			<a href="{{path('ajouter_serie')}}">Ajouter une série</a>
-	    </div>
-    {% else %}
-        <h1>Bienvenue dans la page d'accueil</h1>
-    {% endif %}
-    <a href="{{path('app_serie')}}">Toutes les séries</a>
+<div class="container d-flex">
+    <div>
+        {% if app.user %}
+            <div class="nav-item">
+                <h1> Bienvenue sur SeeList {{app.User.pseudo}}</h1>
+                <button type="button" class="btn1"><a href="{{path('ajouter_serie')}}">Ajouter une série</a></button>
+            </div>
+        {% else %}
+            <h1>Bienvenue sur Seelist</h1>
+        {% endif %}
+        <button type="button" class="btn1"><a href="{{path('app_serie')}}">Toutes les séries</a></button>
+    </div>
 </div>
 {% endblock %}

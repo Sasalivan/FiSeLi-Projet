@@ -6,7 +6,13 @@
 {% block body %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> #}
+    <style>
+        body {background-color: #E8E6E6}
+
+        .card { width: 400px; background-color: #E49BB7; border: 10px; border-radius: 12px}
+    </style>
+
 {% endblock %}
 
 <div class="container mt-5 mb-5 d-flex justify-content-center">
