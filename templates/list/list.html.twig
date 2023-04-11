@@ -3,38 +3,53 @@
 {% block title %}Hello ListController!{% endblock %}
 
 {% block body %}
-<h1>Ma liste</h1>
-    {% if statuses | length > 0 %}
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Serie</th>
-                    <th>Episode Total</th>
-                    {# <th>Episode en cours</th> #}
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Episode en cours</th>
-                    <th>Editer votre status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for status in statuses %}
+
+{% block stylesheets %}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> #}
+    <style>
+        body {background-color: #E8E6E6}
+
+        .container { width: 1060px; justify-content: center; margin-top: 5%; margin-left: auto; margin-right: auto; position: relative; display: block; border:1px}
+        .button {display: inline-block;}
+        .btn1 { background-color: #E49BB7; border-radius: 12px;  border: 10px; color: white; padding: 10px 32px;    margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; }
+        .h1 {text-position: center; margin-top: 5%; }
+    </style>
+{% endblock %}
+
+<div>
+        <div class="container d-flex">
+        {% if statuses | length > 0 %}
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ status.serie.titre }}</td>
-                        <td>{{ status.serie.episode }}</td>
-                        {# <td>{{ status.episodeUser }}</td> #}
-                        <td>{{ status.serie.typeSerie.nom }}</td>
-                        <td>{{ status.nomStatus }}</td>
-                        <td>{{ status.nbEpisodeUser }}</td>
-                        <td><a href="{{ path('list_update', {'id': status.id})}}" type="submit"  class="btn btn-primary btn-lg my-3">up</a></td>
-
+                        <th>Serie</th>
+                        <th>Episode Total</th>
+                        {# <th>Episode en cours</th> #}
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Episode en cours</th>
+                        <th>Editer votre status</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for status in statuses %}
+                        <tr>
+                            <td>{{ status.serie.titre }}</td>
+                            <td>{{ status.serie.episode }}</td>
+                            {# <td>{{ status.episodeUser }}</td> #}
+                            <td>{{ status.serie.typeSerie.nom }}</td>
+                            <td>{{ status.nomStatus }}</td>
+                            <td>{{ status.nbEpisodeUser }}</td>
+                            <td><a href="{{ path('list_update', {'id': status.id})}}" type="submit"  class="btn1">up</a></td>
 
-    {% else %}
-        <p>Votre liste est vide</p> 
-    {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
+        {% else %}
+            <p>Votre liste est vide</p> 
+        {% endif %}
+</div>
 {% endblock %}

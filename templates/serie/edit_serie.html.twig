@@ -3,14 +3,32 @@
 {% block title %}Modifier la série {{ serie.titre }}{% endblock %}
 
 {% block body %}
-    <h1>Modifier la série {{ serie.titre }}</h1>
 
-    {{ form_start(formulaire, {'action': path('edit_serie', {'id': serie.id}),
-                            'method': 'POST'}) }}
+{% block stylesheets %}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> #}
+    <style>
+        body {background-color: #E8E6E6}
 
-    {{ form_widget (formulaire) }}
-        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
-    {{ form_end(formulaire) }}
+        .container { width: 1060px; justify-content: center; margin-top: 5%; margin-left: auto; margin-right: auto; position: relative; display: block; border:1px}
+        .a {display: inline-block; text-decoration: none; font-size: 16px;}
+        .card { width: 600px; background-color: white; border: 10px; border-radius: 12px; padding-top:5%; padding-left: 3%; padding-right: 3%}
+        .button {display: inline-block;}
+        .btn1 { background-color: #E49BB7; border-radius: 12px;  border: 10px; color: white; padding: 10px 32px;    margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; }
+    </style>
+{% endblock %}
 
-    <a href="{{ path('detail', {'id': serie.id}) }}" class="btn btn-secondary">Retour</a>
+    <div class="container d-flex">
+            <div class="card">
+                <h1>Modifier la série {{ serie.titre }}</h1>
+
+                {{ form_start(formulaire, {'action': path('edit_serie', {'id': serie.id}),
+                                        'method': 'POST'}) }}
+
+                {{ form_widget (formulaire) }}
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                {{ form_end(formulaire) }}
+
+                <a href="{{ path('detail', {'id': serie.id}) }}" class="btn btn-secondary">Retour</a>
+            </div>
+    </div>
 {% endblock %}

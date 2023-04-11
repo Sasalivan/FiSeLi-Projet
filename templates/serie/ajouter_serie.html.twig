@@ -1,16 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Add série{% endblock %}
+{% block title %}Add série
+{% endblock %}
 
 {% block body %}
-Ajouter une série
 
-{{ form_start(formulaire, {'action': path('ajouter_serie'),
+	{% block stylesheets %}
+		{# <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> #}
+		<style>
+			body {
+				background-color: #E8E6E6
+			}
+
+			.container {
+				width: 1060px;
+				justify-content: center;
+				margin-top: 5%;
+				margin-left: auto;
+				margin-right: auto;
+				position: relative;
+				display: block;
+				border: 1px
+			}
+			.a {
+				display: inline-block;
+				text-decoration: none;
+				font-size: 16px;
+			}
+
+            .card { width: 900px; background-color: white; border: 10px; border-radius: 12px; padding-top:5%; padding-left: 3%; padding-right: 3%}
+
+            .button {display: inline-block;}
+            .btn1 { background-color: #E49BB7; border-radius: 12px;  border: 10px; color: white; padding: 10px 32px;    margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; }
+		</style>
+	{% endblock %}
+
+	<div class="container d-flex">
+		<div class="card">
+			<h1>Ajouter une série</h1>
+			<br>
+
+			<div class="list-group">
+				{{ form_start(formulaire, {'action': path('ajouter_serie'),
                             'method': 'POST'}) 
 }}
 
-{{ form_widget (formulaire) }}
-<input type="submit" value="Enregistrer">
-{{form_end(formulaire)}}
+				{{ form_widget (formulaire) }}
+				<input type="submit" class="btn1" value="Enregistrer">
+				{{form_end(formulaire)}}
+			</div>
+		</div>
+	</div>
+
 
 {% endblock %}

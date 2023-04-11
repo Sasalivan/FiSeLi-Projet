@@ -3,11 +3,29 @@
 {% block title %}Toutes les séries!{% endblock %}
 
 {% block body %}
-listes de toutes les séries sur le site. <br>
 
-{% for serie in all_serie %}
+{% block stylesheets %}
+    {# <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> #}
+    <style>
+        body {background-color: #E8E6E6}
 
-        <a href="{{ path ('detail' ,{id: serie.id } ) }}">{{ serie.titre }}</a><br>
+        .container { width: 1060px; justify-content: center; margin-top: 5%; margin-left: auto; margin-right: auto; position: relative; display: block; border:1px}
+        .a {display: inline-block; text-decoration: none; font-size: 16px;}
+    </style>
+{% endblock %}
 
-{% endfor %}
+<div class="container d-flex">
+    <div>
+        <h1>listes de toutes les séries sur le site.</h1> <br>
+
+        <div class="list-group">
+                {% for serie in all_serie %}
+
+                        <a href="{{ path ('detail' ,{id: serie.id } ) }}" class="list-group-item list-group-item-action list-group-item-danger">{{ serie.titre }}</a><br>
+
+                {% endfor %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}

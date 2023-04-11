@@ -11,6 +11,8 @@
         body {background-color: #E8E6E6}
 
         .card { width: 400px; background-color: #E49BB7; border: 10px; border-radius: 12px}
+        .button {display: inline-block; }
+        .btn1 {  background-color: black; border-radius: 12px;  border: 10px; color: white; padding: 10px 32px;    margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; }
     </style>
 
 {% endblock %}
@@ -30,7 +32,7 @@
                 }) }}
 				{{ form_row(registrationForm.agreeTerms) }}
 
-				<button type="submit" class="btn btn-primary btn-lg my-3">S'inscrire</button>
+				<button type="submit" class="btn1">S'inscrire</button>
                 <br>
                 <a href="{{path('app_login')}}" > Deja inscrit ? Connectez-vous !</a>
 			{{ form_end(registrationForm) }}

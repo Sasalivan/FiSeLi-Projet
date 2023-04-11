@@ -75,7 +75,7 @@ class ListController extends AbstractController
             ->add('nbEpisodeUser', IntegerType::class, [
                 'label' => 'Episode en cours'
             ])
-            ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
+            
             ->getForm();
     
         $form->handleRequest($request);

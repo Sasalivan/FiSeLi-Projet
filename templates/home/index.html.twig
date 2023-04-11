@@ -14,8 +14,8 @@
         .btn1 { background-color: #E49BB7; border-radius: 12px;  border: 10px; color: white; padding: 10px 32px;    margin: 4px 2px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; }
         .a {text-decoration: none; font-size: 16px;}
     </style>
-
 {% endblock %}
+
 <div class="container d-flex">
     <div>
         {% if app.user %}
@@ -26,7 +26,7 @@
         {% else %}
             <h1>Bienvenue sur Seelist</h1>
         {% endif %}
-        <button type="button" class="btn1"><a href="{{path('app_serie')}}">Toutes les séries</a></button>
+        <button type="submit" class="btn1"><a href="{{path('app_serie')}}">Toutes les séries</a></button>
     </div>
 </div>
 {% endblock %}

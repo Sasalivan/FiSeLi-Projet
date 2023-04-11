@@ -65,7 +65,7 @@ class SerieController extends AbstractController
             $em->flush();
             //et rediriger vers la page de la fiche de la série
             // return new Response("Série enregistrer");
-            return $this->redirectToRoute('detail', ['id' => $serie->getId()]);;
+            return $this->redirectToRoute('app_serie');
       
         }
         else {

@@ -39,11 +39,11 @@ class SerieType extends AbstractType
                 'expanded' => true,
             ])
             ->add('description', TextType::class)
-            ->add('image', FileType::class, [
-                'label' => 'Image',
-                'mapped' => false,
-                'required' => false,
-            ])
+            // ->add('image', FileType::class, [
+            //     'label' => 'Image',
+            //     'mapped' => false,
+            //     'required' => false,
+            // ])
         ;
     }
 
